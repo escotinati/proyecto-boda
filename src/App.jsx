@@ -133,7 +133,7 @@ const WeddingPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbw8H4OXRq2xBpOGvGHyquzd9W_UP2xq-0YEOJpTTutUzCRCRzRFfZlfhussSEWWtNIt/exec"; // REEMPLAZA CON TU URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzdvKKchQxNA0T3zGsv5lLxI6WzZKXWOIThgl52yUR9PPUHEobqKJIxaGxfVRAMDAoi/exec"; // REEMPLAZA CON TU URL
 
     try {
       const params = new URLSearchParams();
