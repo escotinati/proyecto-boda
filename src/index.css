@@ -143,3 +143,50 @@ h3,
 .faq-button:hover .faq-question {
   color: var(--accent-gold);
 }
+
+/* Estilos por defecto (Móvil) */
+.mobile-menu-icon {
+  display: block;
+  /* Se ve en móvil */
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  /* Escondido a la derecha */
+  width: 70%;
+  height: 100vh;
+  background: white;
+  flex-direction: column;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Cuando el menú está abierto */
+.nav-links.open {
+  right: 0;
+  /* Aparece desde la derecha */
+}
+
+/* Estilos para Escritorio (Desktop) */
+@media (min-width: 768px) {
+  .mobile-menu-icon {
+    display: none;
+    /* Escondemos el icono en PC */
+  }
+
+  .nav-links {
+    position: static;
+    height: auto;
+    width: auto;
+    flex-direction: row;
+    background: transparent;
+    box-shadow: none;
+  }
+}

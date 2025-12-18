@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Clock, MapPin, Bus, Heart, ChevronDown, X } from 'lucide-react';
+import { Clock, MapPin, Bus, Heart, ChevronDown, X, Menu } from 'lucide-react';
+
 
 // --- ANIMACIONES BASE ---
 const fadeInUp = {
@@ -10,6 +11,9 @@ const fadeInUp = {
   viewport: { once: true },
   transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }
 };
+
+
+
 
 // --- COMPONENTE: SECCIÓN FAQ ---
 const FAQSection = () => {
@@ -38,7 +42,7 @@ const FAQSection = () => {
     <section id="faq" className="py-32 bg-white px-6">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-16">
-          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif italic">Info Útil</motion.h2>
+          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif italic">Información</motion.h2>
           <motion.div {...fadeInUp} className="w-12 h-px bg-slate-200 mx-auto mt-6" />
         </header>
 
@@ -82,6 +86,7 @@ const FAQSection = () => {
 // --- COMPONENTE PRINCIPAL ---
 const WeddingPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '', apellidos: '', email: '',
     asiste: '', intolerancias: '', otraIntolerancia: '',
@@ -101,6 +106,8 @@ const WeddingPage = () => {
 
   // 3. Efecto Opacity: La imagen se oscurece ligeramente al final del scroll
   const opacity = useTransform(scrollY, [0, 600], [1, 0.4]);
+
+
 
   // Cuenta atrás (18 de Julio 2026, 18:30)
   const [timeLeft, setTimeLeft] = useState({});
@@ -155,7 +162,24 @@ const WeddingPage = () => {
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
           <Link to="inicio" smooth className="serif text-2xl cursor-pointer tracking-tighter">y&a</Link>
-          <div className="hidden md:flex space-x-10">
+
+          {/* Icono Hamburguesa (Solo visible en móviles por CSS) */}
+          <button
+            className="md:hidden text-slate-900 z-50"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Menú de Enlaces: Ahora con clases dinámicas para móvil */}
+          <div className={`
+            fixed md:static top-0 right-0 h-screen md:h-auto w-full md:w-auto
+          bg-white md:bg-transparent
+          flex flex-col md:flex-row items-center justify-center md:space-x-10
+          transition-transform duration-500 ease-in-out z-40
+          ${isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
+          ${isOpen ? 'opacity-100' : 'opacity-0 md:opacity-100'}
+          `}>
             {['Info', 'FAQ', 'Asistencia'].map((item) => (
               <Link
                 key={item}
@@ -163,13 +187,15 @@ const WeddingPage = () => {
                 spy={true}
                 smooth={true}
                 offset={-80}
-                className="text-[10px] uppercase tracking-[0.3em] font-bold cursor-pointer hover:opacity-50 transition-opacity"
+                onClick={() => setIsOpen(false)} // Cierra el menú al hacer click
+                className="py-4 md:py-0 text-[10px] uppercase tracking-[0.3em] font-bold cursor-pointer hover:opacity-50 transition-opacity"
                 activeClass="text-slate-400"
               >
                 {item}
               </Link>
             ))}
           </div>
+
         </div>
       </nav>
 
@@ -178,7 +204,7 @@ const WeddingPage = () => {
         <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center scale-110"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1920&q=80')` }}
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80')` }}
           />
           <div className="absolute inset-0 bg-black/20" />
         </motion.div>
