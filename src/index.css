@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #64748b;
+  --bg-soft: #fcfcfc;
+  --accent-gold: #b2a483;
+  /* Un toque sutil para detalles */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: white;
+  color: var(--primary-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografía Elegante */
+h1,
+h2,
+h3,
+.serif {
+  font-family: "Playfair Display", serif;
+  /* Asegúrate de importar esta fuente en tu HTML o usa una serif del sistema */
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Navbar Minimalista */
+.nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.4s ease;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.nav-link.active {
+  color: var(--secondary-color);
+}
+
+/* Inputs y Botones */
+.input-field {
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-bottom-color: var(--primary-color);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.selector-btn {
+  @apply py-3 px-6 border transition-all duration-500 text-[10px] tracking-widest font-bold;
+  border-color: #eee;
+}
+
+.selector-btn-active {
+  @apply bg-black text-white border-black;
+}
+
+/* --- ESTILOS FAQ ELEGANTE --- */
+.faq-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.faq-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.faq-question {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.faq-answer {
+  padding-bottom: 2rem;
+  color: var(--secondary-color);
+  line-height: 1.8;
+  font-size: 1rem;
+  /* Mantenemos el toque elegante con la fuente serif para la respuesta */
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+}
+
+/* Efecto hover sutil */
+.faq-button:hover .faq-question {
+  color: var(--accent-gold);
+}
