@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, color } from 'framer-motion';
 import { Clock, MapPin, Bus, Heart, ChevronDown, X, Menu } from 'lucide-react';
+import imgindex from './assets/imgindex.png' 
 
 
 // --- ANIMACIONES BASE ---
@@ -39,11 +40,11 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-32 bg-white px-6">
+    <section id="preguntas" className="py-32 bg-white px-6 new-bg">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-16">
-          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif italic">Información</motion.h2>
-          <motion.div {...fadeInUp} className="w-12 h-px bg-slate-200 mx-auto mt-6" />
+          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif">Preguntas</motion.h2>
+          <motion.div {...fadeInUp} className="w-12 h-px bg-slate-200 mx-auto mt-6 lineaDivider" />
         </header>
 
         <div className="divide-y divide-slate-100">
@@ -161,7 +162,10 @@ const WeddingPage = () => {
       {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-          <Link to="inicio" smooth className="serif text-2xl cursor-pointer tracking-tighter">y&a</Link>
+          <Link to="inicio" smooth className="serif text-2xl cursor-pointer tracking-tighter">
+            <img src={imgindex} className='imgindex' alt="" />
+          
+          </Link>
 
           {/* Icono Hamburguesa (Solo visible en móviles por CSS) */}
           <button
@@ -180,7 +184,7 @@ const WeddingPage = () => {
           ${isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
           ${isOpen ? 'opacity-100' : 'opacity-0 md:opacity-100'}
           `}>
-            {['Info', 'FAQ', 'Asistencia'].map((item) => (
+            {['Celebracion', 'Preguntas', 'Asistencia'].map((item) => (
               <Link
                 key={item}
                 to={item.toLowerCase()}
@@ -188,7 +192,7 @@ const WeddingPage = () => {
                 smooth={true}
                 offset={-80}
                 onClick={() => setIsOpen(false)} // Cierra el menú al hacer click
-                className="py-4 md:py-0 text-[10px] uppercase tracking-[0.3em] font-bold cursor-pointer hover:opacity-50 transition-opacity"
+                className="py-4 md:py-0 text-[10px] uppercase tracking-[0.3em] font-bold cursor-pointer hover:opacity-50 transition-opacity fontMenu"
                 activeClass="text-slate-400"
               >
                 {item}
@@ -200,19 +204,19 @@ const WeddingPage = () => {
       </nav>
 
       {/* HERO SECTION */}
-      <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden new-bg">
         <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
           <div
-            className="w-full h-full bg-cover bg-center scale-110"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80')` }}
+            className="w-full h-full bg-cover bg-center scale-110 imgHero"
+            
           />
           <div className="absolute inset-0 bg-black/20" />
         </motion.div>
 
-        <div className="relative z-10 text-center text-white px-6">
+        <div className="relative z-10 text-center text-white px-6 colorFont">
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5 }}
-            className="text-7xl md:text-9xl serif italic mb-6"
+            className="text-7xl md:text-9xl serif mb-6"
           >
             Yulia & Álvaro
           </motion.h1>
@@ -238,35 +242,24 @@ const WeddingPage = () => {
       </section>
 
       {/* INFO SECTION */}
-      <section id="info" className="py-40 px-6 bg-white">
+      <section id="celebracion" className="py-40 px-6 bg-white new-bg">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-24">
-            <h2 className="text-5xl md:text-7xl serif italic mb-6">La Celebración</h2>
-            <div className="w-16 h-px bg-slate-200 mx-auto" />
+            <h2 className="text-5xl md:text-7xl serif mb-6">La Celebración</h2>
+            <div className="w-16 h-px bg-slate-200 mx-auto lineaDivider" />
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-24">
-            <motion.div {...fadeInUp} className="space-y-8">
-              <div className="flex items-center gap-4 text-slate-300">
-                <Clock size={24} strokeWidth={1} />
-                <span className="text-[10px] tracking-[0.3em] font-bold uppercase">El Momento</span>
-              </div>
-              <h3 className="text-4xl serif italic">Ceremonia a las 18:30</h3>
+            <motion.div {...fadeInUp} className="space-y-8">          
+              <h3 className="text-4xl serif">Ceremonia a las 18:30</h3>
               <p className="text-lg text-slate-500 leading-relaxed serif italic">
-                Nos encontraremos en los viñedos del <span className="text-slate-900 font-medium">Restaurante Eneko</span>.
+                Nos encontraremos en los viñedos del <a href="#" className="text-slate-900 font-medium">Restaurante Eneko</a>.
                 Un entorno donde la naturaleza y la paz de Larrabetzu serán testigos de nuestro "sí".
               </p>
-              <div className="pt-4 flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-slate-900 border-b border-slate-900 w-fit cursor-pointer">
-                Ver ubicación <MapPin size={14} />
-              </div>
             </motion.div>
 
             <motion.div {...fadeInUp} className="space-y-8">
-              <div className="flex items-center gap-4 text-slate-300">
-                <Bus size={24} strokeWidth={1} />
-                <span className="text-[10px] tracking-[0.3em] font-bold uppercase">El Traslado</span>
-              </div>
-              <h3 className="text-4xl serif italic">Servicio de Autobús</h3>
+              <h3 className="text-4xl serif">Servicio de Autobús</h3>
               <p className="text-lg text-slate-500 leading-relaxed serif italic">
                 Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-slate-900 font-medium">Getxo</span> y <span className="text-slate-900 font-medium">Zumarraga</span>.
               </p>
@@ -278,7 +271,7 @@ const WeddingPage = () => {
       <FAQSection />
 
       {/* ASISTENCIA SECTION */}
-      <section id="asistencia" className="py-40 bg-slate-50 px-6">
+      <section id="asistencia" className="py-40 bg-slate-50 px-6 new-bg">
         <div className="max-w-xl mx-auto">
           <AnimatePresence mode="wait">
             {!isSubmitted ? (
@@ -292,15 +285,15 @@ const WeddingPage = () => {
                 className="bg-white p-10 md:p-16 shadow-sm border border-slate-100 rounded-sm"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl serif italic mb-4">Confirmación</h2>
+                  <h2 className="text-4xl md:text-5xl serif mb-4">¿Vienes?</h2>
                   <p className="text-[10px] tracking-[0.3em] text-slate-400 uppercase">Rogamos confirmación antes del 1 de Junio</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-12">
                   <div className="space-y-2">
-                    <input type="text" placeholder="NOMBRE" required className="input-field" onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
-                    <input type="text" placeholder="APELLIDOS" required className="input-field" onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })} />
-                    <input type="email" placeholder="EMAIL" required className="input-field" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                    <input type="text" placeholder="Nombre" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
+                    <input type="text" placeholder="Apellidos" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })} />
+                    <input type="email" placeholder="Email" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                   </div>
 
                   <div className="space-y-6">
@@ -329,7 +322,7 @@ const WeddingPage = () => {
                             <button type="button" onClick={() => setFormData({ ...formData, intolerancias: 'no' })} className={`flex-1 selector-btn ${formData.intolerancias === 'no' ? 'selector-btn-active' : ''}`}>NO</button>
                           </div>
                           {formData.intolerancias === 'si' && (
-                            <input type="text" placeholder="¿CUÁL?" className="input-field text-center italic serif" onChange={(e) => setFormData({ ...formData, otraIntolerancia: e.target.value })} />
+                            <input type="text" placeholder="¿CUÁL?" className="input-field inputColor text-center italic serif" onChange={(e) => setFormData({ ...formData, otraIntolerancia: e.target.value })} />
                           )}
                         </div>
 
@@ -352,7 +345,7 @@ const WeddingPage = () => {
                     )}
                   </AnimatePresence>
 
-                  <button type="submit" disabled={isSubmitting || !formData.asiste} className="w-full bg-black text-white py-6 text-[10px] tracking-[0.4em] font-bold uppercase hover:bg-slate-800 transition-colors disabled:opacity-20 mt-8">
+                  <button type="submit" disabled={isSubmitting || !formData.asiste} className="w-full bg-black text-white py-6 text-[10px] tracking-[0.4em] font-bold uppercase hover:bg-slate-800 transition-colors disabled:opacity-20 mt-8 btnEnvio">
                     {isSubmitting ? 'ENVIANDO...' : 'ENVIAR RESPUESTA'}
                   </button>
                 </form>
@@ -396,9 +389,10 @@ const WeddingPage = () => {
         </div>
       </section>
 
-      <footer className="py-20 text-center border-t border-slate-50 bg-white">
-        <p className="serif italic text-2xl mb-4">Yulia & Álvaro</p>
-        <p className="text-[9px] tracking-[0.5em] text-slate-300 uppercase">18 · 07 · 2026 — Larrabetzu</p>
+      <footer className="px-6 py-20 text-center border-t border-slate-50 new-bg flex justify-between">
+        {/* <p className="serif italic text-2xl mb-4">Yulia & Álvaro</p> */}
+        <img src={imgindex} className='imgindexFooter' alt="" />
+        <p className="text-[12px] font-bold tracking-[0.5em] text-slate-300 uppercase fontFooter">18 · 07 · 2026 — Larrabetzu</p>
       </footer>
     </div>
   );
