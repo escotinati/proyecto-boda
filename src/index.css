@@ -238,3 +238,9 @@ footer {
     width: 25%;
     height: auto;
 }
+
+@media (max-width: 768px) {
+    .imgindexFooter {
+        width: 50%;
+    }
+}
