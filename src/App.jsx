@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence, useScroll, useTransform, color } from 'framer-motion';
 import { Clock, MapPin, Bus, Heart, ChevronDown, X, Menu } from 'lucide-react';
-import imgindex from './assets/imgindex.png' 
+import imgindex from './assets/imgindex.png'
+import imgHero from './assets/img_hero.jpg'
 
 
 // --- ANIMACIONES BASE ---
@@ -27,7 +28,7 @@ const FAQSection = () => {
     },
     {
       question: "¿CÓMO LLEGO AL LUGAR?",
-      answer: "La ceremonia y la celebración serán en el Restaurante Eneko (Larrabetzu). Facilitaremos servicio de autobús desde Getxo y Zumarraga."
+      answer: "La ceremonia se celebrará en los viñedos de Eneko Atxa y la celebración será en el Restaurante Eneko (Larrabetzu). Facilitaremos servicio de autobús desde Getxo y Zumarraga."
     },
     {
       question: "¿PUEDO IR CON NIÑOS?",
@@ -40,10 +41,10 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="preguntas" className="py-32 bg-white px-6 new-bg">
+    <section id="preguntas" className="pb-32 bg-[#FFFBF0] px-6 new-bg">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-16">
-          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif">Preguntas</motion.h2>
+          <motion.h2 {...fadeInUp} className="text-5xl md:text-6xl serif text-(--copper)">Preguntas</motion.h2>
           <motion.div {...fadeInUp} className="w-12 h-px bg-slate-200 mx-auto mt-6 lineaDivider" />
         </header>
 
@@ -56,7 +57,7 @@ const FAQSection = () => {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex justify-between items-center py-6 text-left hover:opacity-60 transition-opacity"
                 >
-                  <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-800">{faq.question}</span>
+                  <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#2C1A17]">{faq.question}</span>
                   <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
                     <ChevronDown size={16} strokeWidth={1.5} />
                   </motion.div>
@@ -69,7 +70,7 @@ const FAQSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-8 text-slate-500 serif italic text-lg leading-relaxed">
+                      <p className="pb-8 text-[#8B5E58] serif italic text-lg leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -157,10 +158,10 @@ const WeddingPage = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white text-slate-900 selection:bg-slate-100">
+    <div className="w-full min-h-screen bg-[#FFFBF0] text-[#2C1A17] selection:bg-[#E8C6C6]">
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-50">
+      <nav className="text-2xl cursor-pointer tracking-tighter font-bold text-[#CD4B34]">
         <div className="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
           <Link to="inicio" smooth className="serif text-2xl cursor-pointer tracking-tighter">
             <img src={imgindex} className='imgindex' alt="" />
@@ -169,7 +170,7 @@ const WeddingPage = () => {
 
           {/* Icono Hamburguesa (Solo visible en móviles por CSS) */}
           <button
-            className="md:hidden text-slate-900 z-50"
+            className="md:hidden text-[#2C1A17] z-50"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -178,7 +179,7 @@ const WeddingPage = () => {
           {/* Menú de Enlaces: Ahora con clases dinámicas para móvil */}
           <div className={`
             fixed md:static top-0 right-0 h-screen md:h-auto w-full md:w-auto
-          bg-white md:bg-transparent
+          bg-[#FFFBF0] md:bg-transparent
           flex flex-col md:flex-row items-center justify-center md:space-x-10
           transition-transform duration-500 ease-in-out z-40
           ${isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
@@ -204,7 +205,7 @@ const WeddingPage = () => {
       </nav>
 
       {/* HERO SECTION */}
-      <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden new-bg">
+      <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden new-bg" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center scale-110 imgHero"
@@ -216,20 +217,20 @@ const WeddingPage = () => {
         <div className="relative z-10 text-center text-white px-6 colorFont">
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5 }}
-            className="text-7xl md:text-9xl serif mb-6"
+            className="text-7xl md:text-9xl serif mb-6 text-(--copper)"
           >
             Yulia & Álvaro
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1.5 }}
-            className="text-sm md:text-base tracking-[0.6em] uppercase font-light mb-16"
+            className="text-md lg:text-lg tracking-[0.6em] uppercase font-bold mb-16 text-(--copper)"
           >
             18 · 07 · 2026
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
-            className="flex justify-center gap-8 md:gap-16 border-t border-white/20 pt-10"
+            className="flex justify-center gap-8 md:gap-16 border-t pt-10 text-(--copper)"
           >
             {Object.entries(timeLeft).map(([label, value]) => (
               <div key={label} className="flex flex-col items-center">
@@ -242,28 +243,42 @@ const WeddingPage = () => {
       </section>
 
       {/* INFO SECTION */}
-      <section id="celebracion" className="py-40 px-6 bg-white new-bg">
+      <section id="celebracion" className="py-40 px-6 bg-[#FFFBF0] new-bg">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-24">
-            <h2 className="text-5xl md:text-7xl serif mb-6">La Celebración</h2>
+            <h2 className="text-5xl md:text-7xl serif mb-6 text-(--copper)">La Celebración</h2>
             <div className="w-16 h-px bg-slate-200 mx-auto lineaDivider" />
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-24">
             <motion.div {...fadeInUp} className="space-y-8">          
-              <h3 className="text-4xl serif">Ceremonia a las 18:30</h3>
-              <p className="text-lg text-slate-500 leading-relaxed serif italic">
-                Nos encontraremos en los viñedos del <a href="#" className="text-slate-900 font-medium">Restaurante Eneko</a>.
+              <h3 className="text-4xl serif colorh3">Ceremonia a las 18:30</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
+                Nos encontraremos en los viñedos del <a href="#" className="text-[#2C1A17] font-medium">Restaurante Eneko</a>.
                 Un entorno donde la naturaleza y la paz de Larrabetzu serán testigos de nuestro "sí".
               </p>
             </motion.div>
 
             <motion.div {...fadeInUp} className="space-y-8">
-              <h3 className="text-4xl serif">Servicio de Autobús</h3>
-              <p className="text-lg text-slate-500 leading-relaxed serif italic">
-                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-slate-900 font-medium">Getxo</span> y <span className="text-slate-900 font-medium">Zumarraga</span>.
+              <h3 className="text-4xl serif colorh3">Servicio de Autobús</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
+                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
               </p>
             </motion.div>
+
+            {/* <motion.div {...fadeInUp} className="space-y-8">
+              <h3 className="text-4xl serif colorh3">La Celebración</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
+                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
+              </p>
+            </motion.div>
+
+            <motion.div {...fadeInUp} className="space-y-8">
+              <h3 className="text-4xl serif colorh3">La Fiesta</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
+                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
+              </p>
+            </motion.div> */}
           </div>
         </div>
       </section>
@@ -271,7 +286,7 @@ const WeddingPage = () => {
       <FAQSection />
 
       {/* ASISTENCIA SECTION */}
-      <section id="asistencia" className="py-40 bg-slate-50 px-6 new-bg">
+      <section id="asistencia" className="py-40 bg-[#F5E8E6] px-6 new-bg">
         <div className="max-w-xl mx-auto">
           <AnimatePresence mode="wait">
             {!isSubmitted ? (
@@ -282,10 +297,10 @@ const WeddingPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white p-10 md:p-16 shadow-sm border border-slate-100 rounded-sm"
+                className="bg-[#FFFBF0] p-10 md:p-16 shadow-sm border border-slate-100 rounded-sm"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl serif mb-4">¿Vienes?</h2>
+                  <h2 className="text-4xl md:text-5xl serif mb-4 text-(--copper)">¿Vienes?</h2>
                   <p className="text-[10px] tracking-[0.3em] text-slate-400 uppercase">Rogamos confirmación antes del 1 de Junio</p>
                 </div>
 
@@ -345,7 +360,7 @@ const WeddingPage = () => {
                     )}
                   </AnimatePresence>
 
-                  <button type="submit" disabled={isSubmitting || !formData.asiste} className="w-full bg-black text-white py-6 text-[10px] tracking-[0.4em] font-bold uppercase hover:bg-slate-800 transition-colors disabled:opacity-20 mt-8 btnEnvio">
+                  <button type="submit" disabled={isSubmitting || !formData.asiste} className="w-full bg-[#CD4B34] text-white py-6 text-[10px] tracking-[0.4em] font-bold uppercase hover:bg-slate-800 transition-colors disabled:opacity-20 mt-8 btnEnvio">
                     {isSubmitting ? 'ENVIANDO...' : 'ENVIAR RESPUESTA'}
                   </button>
                 </form>
@@ -357,7 +372,7 @@ const WeddingPage = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="bg-white p-16 md:p-24 shadow-sm border border-slate-100 rounded-sm text-center"
+                className="bg-[#FFFBF0] p-16 md:p-24 shadow-sm border border-slate-100 rounded-sm text-center"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -369,7 +384,7 @@ const WeddingPage = () => {
                 </motion.div>
 
                 <h2 className="text-4xl md:text-5xl serif italic mb-6">¡Gracias, {formData.nombre}!</h2>
-                <p className="text-lg text-slate-500 serif italic leading-relaxed mb-10">
+                <p className="text-lg text-[#8B5E58] serif italic leading-relaxed mb-10">
                   {formData.asiste === 'si'
                     ? "Tu respuesta ha sido registrada. Nos hace muchísima ilusión compartir este día contigo."
                     : "Sentimos mucho que no puedas venir, pero te tendremos muy presente en nuestro día."}

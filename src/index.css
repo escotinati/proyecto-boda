@@ -1,69 +1,17 @@
 @import "tailwindcss";
-
-/* Fuente Zain */
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Zain';
-    src: url('./fonts/Zain-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #64748b;
-    --bg-soft: #fcfcfc;
-    --accent-gold: #b2a483;
-    /* Un toque sutil para detalles */
+    --copper: #CD4B34;
+    --copper-mid: #D46A59;
+    --cotton-rose: #E8C6C6;
+    --floral-white: #FFFBF0;
+    --text-dark: #2C1A17;
+    /* marrón oscuro cálido, reemplaza slate-900 */
+    --text-mid: #8B5E58;
+    /* reemplaza slate-500 */
+    --text-soft: #C9908A;
+    /* reemplaza slate-300 */
+    --border-light: #EDD8D5;
+    /* reemplaza slate-200 / #eee */
 }
 
 html {
@@ -73,56 +21,68 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: white;
-    color: var(--primary-color);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--floral-white);
+    color: var(--text-dark);
     -webkit-font-smoothing: antialiased;
 }
 
 
-/* Tipografía Elegante */
+/* Tipografía Display */
 
 h1,
 h2,
 h3,
-.serif {
-    /* font-family: "Playfair Display", serif; */
-    /* Asegúrate de importar esta fuente en tu HTML o usa una serif del sistema */
-    font-family: "Zain", serif;
-    font-weight: 400;
+.display {
+    font-family: 'Syne', sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
 }
 
 
-/* Navbar Minimalista */
+/* Elimina la clase .serif antigua */
+
+.serif {
+    font-family: 'Syne', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.serif.colorh3 {
+    color: var(--copper-mid);
+}
+
+
+/* Navbar */
 
 .nav-container {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    background: rgba(255, 251, 240, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .nav-link {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     font-weight: 600;
-    color: var(--primary-color);
-    transition: all 0.4s ease;
+    color: var(--text-dark);
+    transition: color 0.3s;
     padding: 0.5rem 1rem;
     cursor: pointer;
 }
 
 .nav-link.active {
-    color: var(--secondary-color);
+    color: var(--copper);
 }
 
 .imgindex {
-    width: 250px;
-    height: auto;
+    width: auto;
+    height: 50px;
 }
 
 
@@ -132,46 +92,53 @@ h3,
     width: 100%;
     padding: 1rem 0;
     border: none;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-light);
     background: transparent;
     outline: none;
     transition: border-color 0.3s;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+}
+
+.input-field::placeholder {
+    color: var(--text-soft);
 }
 
 .input-field:focus {
-    border-bottom-color: var(--primary-color);
+    border-bottom-color: var(--copper);
 }
 
 .btn-primary {
-    background: var(--primary-color);
+    background: var(--copper);
     color: white;
     padding: 1.2rem 2.5rem;
     border-radius: 2px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    transition: opacity 0.3s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    transition: background 0.3s;
 }
 
 .btn-primary:hover {
-    opacity: 0.8;
+    background: var(--copper-mid);
 }
 
 .selector-btn {
     @apply py-3 px-6 border transition-all duration-500 text-[10px] tracking-widest font-bold;
-    border-color: #e8c6c6;
-    color: #D46A59;
+    border-color: var(--border-light);
+    color: var(--text-mid);
 }
 
 .selector-btn-active {
-    /* @apply bg-black text-white border-black; */
-    border: 1px solid #CD4B34;
-    background-color: #CD4B34;
-    color: #fffbf0;
+    background: var(--copper);
+    color: white;
+    border-color: var(--copper);
 }
 
 
-/* --- ESTILOS FAQ ELEGANTE --- */
+/* FAQ */
 
 .faq-container {
     max-width: 700px;
@@ -179,7 +146,7 @@ h3,
 }
 
 .faq-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-light);
     padding: 8px 0;
 }
 
@@ -198,35 +165,29 @@ h3,
 
 .faq-question {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--primary-color);
+    color: var(--text-dark);
 }
 
 .faq-answer {
     padding-bottom: 2rem;
-    color: var(--secondary-color);
+    color: var(--text-mid);
     line-height: 1.8;
     font-size: 1rem;
-    /* Mantenemos el toque elegante con la fuente serif para la respuesta */
-    font-family: "Playfair Display", serif;
-    font-style: italic;
+    font-weight: 300;
 }
-
-
-/* Efecto hover sutil */
 
 .faq-button:hover .faq-question {
-    color: var(--accent-gold);
+    color: var(--copper);
 }
 
 
-/* Estilos por defecto (Móvil) */
+/* Mobile nav */
 
 .mobile-menu-icon {
     display: block;
-    /* Se ve en móvil */
     cursor: pointer;
     z-index: 1001;
 }
@@ -235,84 +196,24 @@ h3,
     position: fixed;
     top: 0;
     right: -100%;
-    /* Escondido a la derecha */
     width: 70%;
     height: 100vh;
-    background: white;
+    background: var(--floral-white);
     flex-direction: column;
     transition: 0.3s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 0 20px rgba(205, 75, 52, 0.08);
 }
-
-
-/* Cuando el menú está abierto */
 
 .nav-links.open {
     right: 0;
-    /* Aparece desde la derecha */
 }
-
-
-/* Estilos NUEVOS */
-
-.imgHero {
-    background-image: url(assets/img_hero.jpg);
-}
-
-.lineaDivider {
-    background-color: #D46A59;
-}
-
-.inputColor {
-    border-bottom: 1px solid #e8c6c6;
-}
-
-.inputColor:focus {
-    border-bottom: 1px solid #CD4B34;
-}
-
-.btnEnvio {
-    background-color: #CD4B34;
-}
-
-section.new-bg,
-footer.new-bg {
-    background-color: #E8C6C6;
-}
-
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding: 30px 40px;
-}
-
-footer .imgindexFooter {
-    display: flex;
-    justify-content: center;
-    height: auto;
-    width: 250px;
-}
-
-.fontMenu {
-    font-size: 12px;
-}
-
-footer .fontFooter {
-    color: #CD4B34;
-}
-
-
-/* Estilos para Escritorio (Desktop) */
 
 @media (min-width: 768px) {
     .mobile-menu-icon {
         display: none;
-        /* Escondemos el icono en PC */
     }
     .nav-links {
         position: static;
@@ -322,4 +223,18 @@ footer .fontFooter {
         background: transparent;
         box-shadow: none;
     }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.imgindexFooter {
+    width: 50%;
+    height: auto;
 }
