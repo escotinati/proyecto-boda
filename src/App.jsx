@@ -57,7 +57,7 @@ const FAQSection = () => {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex justify-between items-center py-6 text-left hover:opacity-60 transition-opacity"
                 >
-                  <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#2C1A17]">{faq.question}</span>
+                  <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#CD4B34]">{faq.question}</span>
                   <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
                     <ChevronDown size={16} strokeWidth={1.5} />
                   </motion.div>
@@ -70,7 +70,7 @@ const FAQSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-8 text-[#8B5E58] serif italic text-lg leading-relaxed">
+                      <p className="pb-8 text-[#DA96A2] serif italic text-lg leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -95,6 +95,7 @@ const WeddingPage = () => {
     bus: '', parada: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   // Efecto Parallax para el Hero
   const { scrollY } = useScroll();
@@ -130,9 +131,24 @@ const WeddingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.nombre.trim()) errors.nombre = 'El nombre es obligatorio';
+    if (!formData.apellidos.trim()) errors.apellidos = 'Los apellidos son obligatorios';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = 'El email es obligatorio';
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = 'Introduce un email válido';
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   // Envío a Google Sheets
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setIsSubmitting(true);
 
     const scriptURL = "https://script.google.com/macros/s/AKfycbzdvKKchQxNA0T3zGsv5lLxI6WzZKXWOIThgl52yUR9PPUHEobqKJIxaGxfVRAMDAoi/exec"; // REEMPLAZA CON TU URL
@@ -252,33 +268,32 @@ const WeddingPage = () => {
 
           <div className="grid md:grid-cols-2 gap-24">
             <motion.div {...fadeInUp} className="space-y-8">          
-              <h3 className="text-4xl serif colorh3">Ceremonia a las 18:30</h3>
-              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
-                Nos encontraremos en los viñedos del <a href="#" className="text-[#2C1A17] font-medium">Restaurante Eneko</a>.
-                Un entorno donde la naturaleza y la paz de Larrabetzu serán testigos de nuestro "sí".
+              <h3 className="text-4xl serif colorh3">Cómo llegar</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic colorText">
+                Queremos que vengáis sin preocupaciones. Tendréis autobuses con salida desde <a href="https://maps.app.goo.gl/pEbmCjrs9wK6TdFu5" class="colorEnlace" target="_blank" rel="noopener noreferrer">Algorta</a> y <a href="https://maps.app.goo.gl/n28CWNZveaGEf3Tz5" class="colorEnlace" target="_blank" rel="noopener noreferrer">Zumarraga</a> para llegar a tiempo a la ceremonia. Si preferís venir en coche, podréis dejarlo en el <a href="https://maps.app.goo.gl/5H5oGFnMs5abTi9h9" class="colorEnlace" target="_blank" rel="noopener noreferrer">restaurante</a> — el viñedo tiene estacionamiento limitado, así que esta es la mejor opción. ¡Sin excusas para llegar tarde! 💍
               </p>
             </motion.div>
 
             <motion.div {...fadeInUp} className="space-y-8">
-              <h3 className="text-4xl serif colorh3">Servicio de Autobús</h3>
-              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
-                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
+              <h3 className="text-4xl serif colorh3">La Ceremonia · 18:30h</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic colorText">
+                Nos daremos el "sí quiero" en los viñedos del Restaurante Eneko. Un rincón donde la naturaleza hace todo el trabajo de decoración — nosotros solo ponemos el amor. 🍇
               </p>
             </motion.div>
 
-            {/* <motion.div {...fadeInUp} className="space-y-8">
-              <h3 className="text-4xl serif colorh3">La Celebración</h3>
-              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
-                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
+            <motion.div {...fadeInUp} className="space-y-8">
+              <h3 className="text-4xl serif colorh3">Cóctel y Cena</h3>
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic colorText ">
+                Tras la ceremonia, nos trasladaremos al complejo Eneko donde podremos disfrutar de vuestra compañía durante el cóctel y después sentarnos juntos a la mesa. ¡Venid con hambre! 🥂🍽️
               </p>
             </motion.div>
 
             <motion.div {...fadeInUp} className="space-y-8">
               <h3 className="text-4xl serif colorh3">La Fiesta</h3>
-              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic">
-                Queremos que disfrutéis de la fiesta sin preocupaciones. Dispondréis de autobuses con salida y regreso desde <span className="text-[#2C1A17] font-medium">Getxo</span> y <span className="text-[#2C1A17] font-medium">Zumarraga</span>.
+              <p className="text-lg text-[#8B5E58] leading-relaxed serif italic colorText">
+                Después de cenar, la música tomará el relevo. Hemos preparado una selección que esperamos que os tenga en la pista hasta las 4:30h — sí, habéis leído bien. ¡Queremos bailar con vosotros toda la noche! Para los que necesitéis volver antes, habrá autobuses de regreso a Algorta y Zumarraga a las 00:30h y a las 4:30h. Pero os lo pedimos con el corazón: ¡quedaos con nosotros hasta el final! 🪩🎉       
               </p>
-            </motion.div> */}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -301,18 +316,21 @@ const WeddingPage = () => {
               >
                 <div className="text-center mb-16">
                   <h2 className="text-4xl md:text-5xl serif mb-4 text-(--copper)">¿Vienes?</h2>
-                  <p className="text-[10px] tracking-[0.3em] text-slate-400 uppercase">Rogamos confirmación antes del 1 de Junio</p>
+                  <p className="text-[10px] tracking-[0.3em] text-slate-400 uppercase colorSbt">Rogamos confirmación antes del 1 de Junio</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-12">
                   <div className="space-y-2">
-                    <input type="text" placeholder="Nombre" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
-                    <input type="text" placeholder="Apellidos" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })} />
-                    <input type="email" placeholder="Email" required className="input-field inputColor" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                    <input type="text" placeholder="Nombre" className="input-field inputColor" onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
+                    {formErrors.nombre && <p className="text-xs text-[#CD4B34] tracking-wide pl-1">{formErrors.nombre}</p>}
+                    <input type="text" placeholder="Apellidos" className="input-field inputColor" onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })} />
+                    {formErrors.apellidos && <p className="text-xs text-[#CD4B34] tracking-wide pl-1">{formErrors.apellidos}</p>}
+                    <input type="email" placeholder="Email" className="input-field inputColor" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                    {formErrors.email && <p className="text-xs text-[#CD4B34] tracking-wide pl-1">{formErrors.email}</p>}
                   </div>
 
                   <div className="space-y-6">
-                    <p className="text-[9px] tracking-[0.3em] font-bold text-slate-400 text-center uppercase">¿Podrás acompañarnos?</p>
+                    <p className="text-[9px] tracking-[0.3em] font-bold text-slate-400 text-center uppercase colorSbt">¿Podrás acompañarnos?</p>
                     <div className="flex gap-4">
                       <button type="button" onClick={() => setFormData({ ...formData, asiste: 'si' })}
                         className={`flex-1 selector-btn ${formData.asiste === 'si' ? 'selector-btn-active' : ''}`}>SÍ, ASISTIRÉ</button>

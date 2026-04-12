@@ -49,7 +49,24 @@ h3,
 }
 
 .serif.colorh3 {
-    color: var(--copper-mid);
+    color: var(--copper);
+}
+
+.serif.colorText {
+    color: #DA96A2;
+}
+
+a.colorEnlace,
+span.colorEnlace {
+    color: var(--copper);
+}
+
+.colorSbt {
+    color: var(--copper-mid)
+}
+
+footer p.fontFooter {
+    color: var(--copper);
 }
 
 
@@ -135,6 +152,10 @@ h3,
     background: var(--copper);
     color: white;
     border-color: var(--copper);
+}
+
+button.btnEnvio:hover {
+    background: var(--copper);
 }
 
 
